@@ -6,7 +6,7 @@ if __name__ == '__main__':
     commit = p.read()
     p.close()
 
-    p = os.popen('git describe --tags ' + commit)
+    p = os.popen(f'git describe --tags {commit}')
     tag = p.read()
     p.close()
 
@@ -14,7 +14,6 @@ if __name__ == '__main__':
 
     version = str(tag[1:])
     version_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "../QtScrcpy/version"))
-    file=open(version_file, 'w')
-    file.write(version)
-    file.close()
+    with open(version_file, 'w') as file:
+        file.write(version)
     sys.exit(0)
